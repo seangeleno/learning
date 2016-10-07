@@ -2,7 +2,10 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 
-/* GET Bitcoin Data */
+function refreshPage() {
+    window.location.reload();
+}
+
 router.get('/', function(req, res) {
     var options = {
         method: 'GET',
@@ -10,11 +13,20 @@ router.get('/', function(req, res) {
     };
     request(options, function(error, response, body) {
         if (error) throw new Error(error);
-        // var displayText = "<h1>Current Bitcoin Price: " + body["bpi"]["USD"]["rate"] + "</h1>";
         // res.send(displayText);
         var btcPrice = JSON.parse(body);
-        res.send("<h1>Current Bitcoin Price: " + btcPrice["bpi"]["USD"]["rate"] + "</h1>");
+        var displayText = btcPrice["bpi"]["USD"]["rate"];
+        var updatedTime = btcPrice["time"]["updated"];
+        var disclaimer = btcPrice["disclaimer"];
+
+        res.render('bitcoin', {
+            displayText: displayText,
+            updatedTime: updatedTime,
+            disclaimer: disclaimer
+        })
     });
+    /* GET Bitcoin Data */
+    //res.send(displayText);
 });
 
 module.exports = router;
