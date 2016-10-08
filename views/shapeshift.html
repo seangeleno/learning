@@ -90,45 +90,53 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation"><a href="/">Home</a></li>
-            <li role="presentation" class="active"><a href="#">Bitcoin</a></li>
-            <li role="presentation"><a href="shapeshift">Shapeshift</a></li>
+            <li role="presentation"><a href="bitcoin">Bitcoin</a></li>
+            <li role="presentation" class="active"><a href="shapeshift">ShapeShift</a></li>
+
           </ul>
         </nav>
-        <h4 class="text-muted">Bitcoin API Ticker</h4>
+        <h4 class="text-muted">Shapeshift API Ticker</h4>
       </div>
 
       <div class="jumbotron">
-        <h1>${{displayText}}</h1>
-        <h3 class="text-muted">Bitcoin Price USD</h3>
-        <p>
-          Latest Update: {{updatedTime}}
-        </p>
-        <p><a class="btn btn-lg btn-success" href="bitcoin" role="button">Update</a></p>
+        <h1>shapeshift.io</h1>
+        <h3 class="text-muted">My Favorite Cryptocurrencies</h3>
+        <p><a class="btn btn-lg btn-success" href="/" role="button">Home</a></p>
       </div>
 
       <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>Disclaimer</h4>
-          <p>{{disclaimer}}</p>
+        <div class="col-lg-4">
+          <h4>Name</h4>
+          <p>{{dashName}}</p>
 
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+          <h4>Symbol</h4>
+          <p>{{dashSymbol}}</p>
 
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <h4>Image</h4>
+          <img src={{dashImage}} alt="" />
         </div>
 
-        <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+        <div class="col-lg-4">
+          <h4>Name</h4>
+          <p>{{xmrName}}</p>
 
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+          <h4>Symbol</h4>
+          <p>{{xmrSymbol}}</p>
 
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <h4>Image</h4>
+          <img src={{xmrImage}} alt="" />
         </div>
-      </div>
+
+        <div class="col-lg-4">
+          <h4>Name</h4>
+          <p>{{btcName}}</p>
+
+          <h4>Symbol</h4>
+          <p>{{btcSymbol}}</p>
+
+          <h4>Image</h4>
+          <img src={{btcImage}} alt="" />
+        </div>
 
       <footer class="footer">
         <p>&copy; 2016 Company, Inc.</p>

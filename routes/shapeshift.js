@@ -11,16 +11,38 @@ router.get('/', function(req, res) {
     request(options, function(error, response, body) {
         if (error) throw new Error(error);
         var allCoins = body;
+
+        //Dash
         var dash = allCoins["DASH"];
-        var dashName = allCoins["DASH"]["name"];
-        var dashSymbol = allCoins["DASH"]["symbol"];
-        var dashImage = allCoins["DASH"]["image"];
-         res.send('<p><a class="btn btn-lg btn-success" href="' + dashImage + '" role="button">'+dashSymbol+'</a></p>');
+        var dashName = dash["name"];
+        var dashSymbol = dash["symbol"];
+        var dashImage = dash["image"];
+         //res.send('<p><a class="btn btn-lg btn-success" href="' + dashImage + '" role="button">'+dashSymbol+'</a></p>');
+         //BTC
+         var btc = allCoins["BTC"];
+         var btcName = btc["name"];
+         var btcSymbol = btc["symbol"];
+         var btcImage = btc["image"];
+         // Monero
+         var xmr = allCoins["XMR"];
+         var xmrName = xmr["name"];
+         var xmrSymbol = xmr["symbol"];
+         var xmrImage = xmr["image"];
 
-
-        // res.render('shapeshift', {
-        //     allCoins: allCoins
-        // })
+         res.render('shapeshift', {
+             dash: dash,
+             dashName: dashName,
+             dashSymbol: dashSymbol,
+             dashImage: dashImage,
+             xmr: xmr,
+             xmrName: xmrName,
+             xmrSymbol: xmrSymbol,
+             xmrImage: xmrImage,
+             btc: btc,
+             btcName: btcName,
+             btcSymbol: btcSymbol,
+             btcImage: btcImage
+         })
     });
 
 });
