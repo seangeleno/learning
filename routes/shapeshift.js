@@ -10,11 +10,13 @@ function refreshPage() {
 router.get('/', function(req, res) {
     var pairGet = {
         method: 'GET',
-        url: 'http://shapeshift.io/marketinfo/btc_xmr'
+        url: 'http://shapeshift.io/marketinfo/btc_xmr',
+        json: true // JSON stringifies the body automatically
     };
     var getCoins = {
         method: 'GET',
-        url: 'shapeshift.io/getcoins'
+        url: 'shapeshift.io/getcoins',
+        json: true // JSON stringifies the body automatically
     };
     //var shapeshiftPair = function(error, response, body) {
     request(getCoins, shapeshiftCoins);

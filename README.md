@@ -1,10 +1,47 @@
-# Project Title
+# Learning NodeJS, Express, Swig and MongoDB with APIs served on Top
 
-One Paragraph of project description goes here
+I am learning how to utilize APIs, building an interactive website
+that allows for basic GET requests to display data in a bootstrapified way.
+
+### So far I have:
+
+- coindesk.com
+- shapeshift.io
+
+### I have plans to add:
+
+- google url shortener
+- google translate
+- urban dictionary
+- sentiment analysis
+- yelp
+- accuweather - use wind speed to move css element(?)
+- many others
+
+I will add on more features incrementally as I get a better grasp of the foundational concepts.
+
+- MongoDB vs postgresql vs Couchdb?
+- angular 2
+- reactjs
+- webpack
+- gulp
+- template engines
+- Auth0 vs Passport
+- JWT
+- webtask
+- websockets vs xmpp.websockets (private chat server)
+- node encryption
+- oppenssl encryption
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+1. git clone github.com/seangeleno/learning
+
+2. cd learning && npm i
+
+3. npm start
+
+4. open browser on localhost:3000
 
 ### Prerequisities
 
@@ -68,11 +105,11 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Sean Esteva** - *Initial work* - [Seageleno](https://github.com/seangeleno)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
@@ -85,4 +122,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Hat tip to anyone who's code was used
 * Inspiration
 * etc
-

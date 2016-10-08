@@ -9,12 +9,13 @@ function refreshPage() {
 router.get('/', function(req, res) {
     var options = {
         method: 'GET',
-        url: 'http://api.coindesk.com/v1/bpi/currentprice/USD.json'
+        url: 'http://api.coindesk.com/v1/bpi/currentprice/USD.json',
+        json: true // JSON stringifies the body automatically
     };
     request(options, function(error, response, body) {
         if (error) throw new Error(error);
         // res.send(displayText);
-        var btcPrice = JSON.parse(body);
+        var btcPrice = body;
         var displayText = btcPrice["bpi"]["USD"]["rate"];
         var updatedTime = btcPrice["time"]["updated"];
         var disclaimer = btcPrice["disclaimer"];
