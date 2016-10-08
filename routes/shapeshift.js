@@ -2,74 +2,27 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 
-function refreshPage() {
-    window.location.reload();
-}
-
-/* GET Cyrpto Currenty Exchange Data */
 router.get('/', function(req, res) {
-    var pairGet = {
+    var options = {
         method: 'GET',
-        url: 'http://shapeshift.io/marketinfo/btc_xmr',
-        json: true // JSON stringifies the body automatically
+        url: 'https://shapeshift.io/getcoins',
+        json: true
     };
-    var getCoins = {
-        method: 'GET',
-        url: 'shapeshift.io/getcoins',
-        json: true // JSON stringifies the body automatically
-    };
-    //var shapeshiftPair = function(error, response, body) {
-    request(getCoins, shapeshiftCoins);
-    //request(pairGet, shapeshiftCoins);
-
-     function shapeshiftCoins (error, response, body) {
+    request(options, function(error, response, body) {
         if (error) throw new Error(error);
-        var allCoins = JSON.parse(body);
+        var allCoins = body;
         var dash = allCoins["DASH"];
-        var btc = allCoins["BTC"];
-        var xmr = allCoins["XMR"];
-        var ether = allCoins["ETH"];
-        var doge = allCoins["DOGE"];
-        var displayAllCoins = "<h1>Crypto Currencies: " + allCoins + "</h1>";
+        var dashName = allCoins["DASH"]["name"];
+        var dashSymbol = allCoins["DASH"]["symbol"];
+        var dashImage = allCoins["DASH"]["image"];
+         res.send('<p><a class="btn btn-lg btn-success" href="' + dashImage + '" role="button">'+dashSymbol+'</a></p>');
 
-        //console.log(body);
-        //console.log(pair);
-        //res.send(message);
-        res.render('shapeshift', {
-          allCoins: allCoins,
-           dash: dash,
-          btc: btc,
-          xmr: xmr,
-          ether: ether,
-          doge: doge
-        })
 
-      };
-     function shapeshiftCoins2 (error, response, body) {
-        if (error) throw new Error(error);
-        var allCoins = JSON.parse(body);
-        var dash = allCoins["DASH"];
-        var btc = exchange["BTC"];
-        var xmr = exchange["XMR"];
-        var ether = exchange["ETH"];
-        var doge = exchange["DOGE"];
-        var displayAllCoins = "<h1>Crypto Currencies: " + allCoins + "</h1>";
+        // res.render('shapeshift', {
+        //     allCoins: allCoins
+        // })
+    });
 
-        //console.log(body);
-        //console.log(pair);
-        //res.send(message);
-        res.render('shapeshift', {
-          allCoins: allCoins,
-           dash: dash,
-          btc: btc,
-          xmr: xmr,
-          ether: ether,
-          doge: doge
-        })
-
-      };
-
-    //res.send("<h1> why isn't this working :'( </h1>");
 });
 
 module.exports = router;

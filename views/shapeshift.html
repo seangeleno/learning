@@ -90,20 +90,20 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation"><a href="/">Home</a></li>
-            <li role="presentation"><a href="bitcoin">Bitcoin</a></li>
-            <li role="presentation" class="active"><a href="#">Shapeshift</a></li>
+            <li role="presentation" class="active"><a href="#">Bitcoin</a></li>
+            <li role="presentation"><a href="shapeshift">Shapeshift</a></li>
           </ul>
         </nav>
-        <h4 class="text-muted">Shape Shift Crypto Converter</h4>
+        <h4 class="text-muted">Bitcoin API Ticker</h4>
       </div>
 
       <div class="jumbotron">
-        <h1>XMR {{rate}} = 1 BTC</h1>
-        <h3 class="text-muted">Crypto Shit</h3>
+        <h1>${{displayText}}</h1>
+        <h3 class="text-muted">Bitcoin Price USD</h3>
         <p>
-          Latest Update: I can't believe that actually worked!
+          Latest Update: {{updatedTime}}
         </p>
-        <p><a class="btn btn-lg btn-success" href="/" role="button">{{pair}}</a></p>
+        <p><a class="btn btn-lg btn-success" href="bitcoin" role="button">Update</a></p>
       </div>
 
       <div class="row marketing">
