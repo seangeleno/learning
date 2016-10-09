@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> Auth0 Login</title>
+    <script src="https://cdn.auth0.com/js/lock/10.3/lock.min.js" charset="utf-8"></script>
+</head>
+  <div id="root" style="width: 280px; margin: 40px auto; padding: 10px;"> </div>
+<body>
+
+
+</body>
+
+<script type="text/javascript">
+    // Construct an instance of Auth0Lock with your clientId and aut0 domain name
+    var lock = new Auth0Lock('{{env.AUTH0_CLIENT_ID}}',
+        '{{env.AUTH0_DOMAIN}}', {
+            auth: {
+                redirectUrl: '{{env.AUTH0_CALLBACK_URL}}',
+                responseType: 'code',
+                params: {
+                    scope: 'openid name email picture'
+                }
+            }
+        });
+
+    // Show lock's login widget
+    lock.show();
+</script>
+
+</html>
