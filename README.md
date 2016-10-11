@@ -7,10 +7,13 @@ that allows for basic GET requests to display data in a bootstrapified way.
 
 - coindesk.com
 - shapeshift.io
+- Auth0 / User Authentication
+- Custom Made URL shortener
+- MongoDB
+
 
 ### I have plans to add:
 
-- google url shortener
 - google translate
 - urban dictionary
 - sentiment analysis
@@ -26,8 +29,7 @@ I will add on more features incrementally as I get a better grasp of the foundat
 - webpack
 - gulp
 - template engines
-- Auth0 vs Passport
-- JWT
+- JWT - SPA
 - webtask
 - websockets vs xmpp.websockets (private chat server)
 - node encryption

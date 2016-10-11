@@ -2,7 +2,7 @@
 $('.btn-shorten').on('click', function(){
   // AJAX call to /api/shorten with the URL that the user entered in the input box
   $.ajax({
-    url: '/api/shorten',
+    url: 'shorten',
     type: 'POST',
     dataType: 'JSON',
     data: {url: $('#url-field').val()},

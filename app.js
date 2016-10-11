@@ -21,16 +21,23 @@ var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
 dotenv.load();
 
-/* MONGODB NON-RELATIONAL DATABASE */
+/* MONGODB IMPORT */
 var mongoose = require('mongoose');
 var config = require('./config/config.js');
 var base58 = require('./base58.js');
 
-/* Routing */
+/* Routing Importing */
+var Url = require('./models/url');
+
+/* MONGO CONNECT */
+mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name);
+
+/* Routing Importing */
 var routes = require('./routes/index');
 var user = require('./routes/user');
 var bitcoin = require('./routes/bitcoin');
 var shapeshift = require('./routes/shapeshift');
+var shorten = require('./routes/shorten');
 
 /* Configure Passport to use Auth0 - This will configure Passport to use Auth0 */
  var strategy = new Auth0Strategy({
@@ -64,9 +71,7 @@ app.use(logger('dev'));
 
 /*  */
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({  extended: true   }));
 app.use(cookieParser());
 
 /* Passport Middleware Start */
@@ -82,10 +87,10 @@ app.use(passport.session());
 /* Routing */
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
+app.use('/shorten', shorten);
 app.use('/user', user);
 app.use('/bitcoin', bitcoin);
 app.use('/shapeshift', shapeshift);
-app.use('/urlshort', urlshortener);
 
 /* ERROR HANDLERS */
 // catch 404 and forward to error handler
