@@ -1,27 +1,38 @@
+/* EXPRESS JS MODULE IMPORT + INSTANTIATION */
 var express = require('express');
+var app = express();
+
+/* SETUP MIDDLEWARE GOES HERE */
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+/* Template Engine: SWIG - 1/2 */
 var swig = require('swig');
+
+/* API Calls with Request */
 var request = require('request');
+
+/* Auth0 + Passport */
 var session = require('express-session');
 var dotenv = require('dotenv');
 var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
-
 dotenv.load();
 
+/* MONGODB NON-RELATIONAL DATABASE */
+var mongoose = require('mongoose');
+var config = require('./config/config.js');
+var base58 = require('./base58.js');
+
+/* Routing */
 var routes = require('./routes/index');
 var user = require('./routes/user');
 var bitcoin = require('./routes/bitcoin');
 var shapeshift = require('./routes/shapeshift');
 
-/*
- ** Configure Passport to use Auth0
- ** Start
- */
- // This will configure Passport to use Auth0
+/* Configure Passport to use Auth0 - This will configure Passport to use Auth0 */
  var strategy = new Auth0Strategy({
      domain:       process.env.AUTH0_DOMAIN,
      clientID:     process.env.AUTH0_CLIENT_ID,
@@ -33,34 +44,31 @@ var shapeshift = require('./routes/shapeshift');
      // profile has all the information from the user
      return done(null, profile);
    });
-
  passport.use(strategy);
- // you can use this section to keep a smaller payload
+
+ /* Passport Serialize + Deserialize */
  passport.serializeUser(function(user, done) {
    done(null, user);
  });
-
  passport.deserializeUser(function(user, done) {
    done(null, user);
  });
-/*
- ** Configure Passport to use Auth0
- ** end
- */
 
-var app = express();
-
-// view engine setup
+/* Template Engine: SWIG 2/2 */
 var swig = new swig.Swig();
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 
+/*  */
 app.use(logger('dev'));
+
+/*  */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 app.use(cookieParser());
+
 /* Passport Middleware Start */
 app.use(session({
   secret: 'pinkmanthedog',
@@ -70,17 +78,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 /* Passport Middleware End */
-app.use(express.static(path.join(__dirname, 'public')));
 
+/* Routing */
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/user', user);
 app.use('/bitcoin', bitcoin);
 app.use('/shapeshift', shapeshift);
+app.use('/urlshort', urlshortener);
 
-/*
- ** ERROR HANDLERS
- ** start
- */
+/* ERROR HANDLERS */
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -88,8 +95,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 // error handlers
-// development error handler
-// will print stacktrace
+// development error handler will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
@@ -108,9 +114,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-/*
- ** ERROR HANDLERS
- ** end
- */
+/* ERROR HANDLERS END */
 
 module.exports = app;
